@@ -1,0 +1,551 @@
+/* ===============================
+   VARIABLES
+   =============================== */
+:root {
+  --primary: #552583;
+  --secondary: #FDB927;
+  --light: #808080;
+  --dark: #000;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  --transition: all .3s ease;
+}
+
+/* ===============================
+   GLOBAL STYLES
+   =============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #000;
+  color: var(--dark);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  background: var(--light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+/* ===============================
+   HEADER
+   =============================== */
+.header {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: var(--dark);
+  padding: 25px 30px;
+  position: relative;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.header h1 i {
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  font-size: .95rem;
+  opacity: .9;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.btn-reset {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: var(--dark);
+  padding: 8px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+}
+
+.btn-reset:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   CONTENT
+   =============================== */
+.content {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  background: var(--light);
+  color: var(--dark);
+}
+
+/* ===============================
+   9x9 GRID - TÜM EKRANLARDA SABİT
+   =============================== */
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  gap: 8px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 700px;
+  margin: 0 auto;
+}
+
+.grid-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 8px 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-btn:hover {
+  background: #6a3093;
+  transform: translateY(-2px);
+}
+
+.grid-btn.selected {
+  background: var(--secondary);
+  color: var(--dark);
+  box-shadow: 0 0 20px rgba(253, 185, 39, 0.7);
+  transform: scale(1.05);
+}
+
+.grid-btn .code {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.grid-btn .pc-only {
+  font-size: 0.6rem;
+  text-align: center;
+  line-height: 1.2;
+  display: none;
+}
+
+/* PC'de şehir isimlerini göster */
+@media (min-width: 768px) {
+  .grid-btn .pc-only {
+    display: block;
+  }
+  
+  .grid-btn {
+    padding: 10px 4px;
+  }
+}
+
+/* ===============================
+   RESULT SECTION
+   =============================== */
+.result-container {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 1px solid #e0e7ff;
+}
+
+.result-header {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 18px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title i {
+  color: white;
+}
+
+.result-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#selectedCityInfo {
+  font-weight: 600;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.btn-copy {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-copy:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#result {
+  padding: 25px;
+  min-height: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: linear-gradient(135deg, var(--primary), #3a1a5e);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.no-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  opacity: 0.7;
+  gap: 15px;
+}
+
+.no-selection i {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.no-selection p {
+  font-size: 1.1rem;
+  max-width: 400px;
+}
+
+/* Mesafe Listesi Stilleri */
+.distance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.distance-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: var(--transition);
+  border-left: 4px solid transparent;
+}
+
+.distance-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.distance-item:nth-child(1) { border-left-color: #FFD700; } /* Altın - 1. sıra */
+.distance-item:nth-child(2) { border-left-color: #C0C0C0; } /* Gümüş - 2. sıra */
+.distance-item:nth-child(3) { border-left-color: #CD7F32; } /* Bronz - 3. sıra */
+.distance-item:nth-child(-n+3) { background: rgba(255, 255, 255, 0.08); }
+
+.rank {
+  font-weight: 700;
+  font-size: 1.2rem;
+  min-width: 40px;
+  text-align: center;
+  color: var(--secondary);
+}
+
+.distance-details {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.city-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.city-code {
+  font-weight: 700;
+  font-size: 1.1rem;
+  background: rgba(253, 185, 39, 0.2);
+  padding: 4px 10px;
+  border-radius: 4px;
+  min-width: 50px;
+  text-align: center;
+}
+
+.city-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.distance-value {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--secondary);
+  min-width: 80px;
+  text-align: right;
+}
+
+.distance-unit {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-left: 2px;
+}
+
+/* ===============================
+   FOOTER
+   =============================== */
+.footer {
+  text-align: center;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: var(--dark);
+  padding: 25px 30px;
+  position: relative;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer p:last-child {
+  margin-bottom: 0;
+}
+
+.footer a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===============================
+   RESPONSIVE - 9x9 HER ZAMAN KORUNUR
+   =============================== */
+@media (max-width: 992px) {
+  .container {
+    max-width: 95%;
+  }
+  
+  .buttons-grid {
+    gap: 6px;
+  }
+  
+  .grid-btn {
+    min-height: 35px;
+  }
+  
+  .city-code {
+    font-size: 1rem;
+    min-width: 45px;
+  }
+  
+  .city-name {
+    font-size: 1rem;
+  }
+  
+  .distance-value {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .buttons-grid {
+    gap: 5px;
+  }
+  
+  .grid-btn {
+    min-height: 30px;
+  }
+  
+  .grid-btn .code {
+    font-size: 0.9rem;
+  }
+  
+  .result-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .result-info {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  #selectedCityInfo {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .btn-copy {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .distance-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .distance-details {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .city-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .distance-value {
+    align-self: flex-end;
+    text-align: right;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    padding: 20px;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .buttons-grid {
+    gap: 4px;
+  }
+  
+  .grid-btn {
+    min-height: 25px;
+    border-radius: 6px;
+  }
+  
+  .grid-btn .code {
+    font-size: 0.8rem;
+  }
+  
+  .footer p {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  #result {
+    padding: 15px;
+    min-height: 250px;
+    max-height: 350px;
+  }
+  
+  .distance-item {
+    padding: 10px;
+  }
+  
+  .rank {
+    font-size: 1rem;
+    min-width: 35px;
+  }
+}
+
+@media (max-width: 400px) {
+  body {
+    padding: 10px;
+  }
+  
+  .buttons-grid {
+    gap: 3px;
+  }
+  
+  .grid-btn {
+    min-height: 22px;
+  }
+  
+  .grid-btn .code {
+    font-size: 0.7rem;
+  }
+  
+  .no-selection i {
+    font-size: 2.5rem;
+  }
+  
+  .no-selection p {
+    font-size: 1rem;
+  }
+}
